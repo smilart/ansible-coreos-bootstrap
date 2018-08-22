@@ -30,3 +30,14 @@
 - name: Install pip launcher
   copy: src=runner dest=~/bin/pip mode=0755
   when: need_pip is failed
+
+- name: Check if we need to install docker-py
+  shell: "{{ansible_python_interpreter}} -c 'import docker'"
+  register: need_docker_module
+  ignore_errors: True
+  changed_when: false
+
+- name: Install docker-py
+  shell: "{{ansible_python_interpreter}} -m pip install docker"
+  when: need_docker_module is failed
+
