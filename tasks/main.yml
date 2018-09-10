@@ -1,5 +1,8 @@
+- name: Create /opt/python directory
+  file: path=/opt/python state=directory
+
 - name: Check if bootstrap is needed
-  raw: stat $HOME/.bootstrapped
+  raw: stat /opt/python/.bootstrapped
   register: need_bootstrap
   ignore_errors: True
   changed_when: "need_bootstrap.rc != 0"
