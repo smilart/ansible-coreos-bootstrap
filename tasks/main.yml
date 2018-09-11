@@ -1,5 +1,5 @@
 - name: Create /opt/python directory
-  file: path=/opt/python state=directory
+  raw: mkdir -p /opt/python 
 
 - name: Check if bootstrap is needed
   raw: stat /opt/python/.bootstrapped
