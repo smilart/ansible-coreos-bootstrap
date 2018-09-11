@@ -4,7 +4,7 @@ PYTHON_HOME=/opt/python
 
 set -e
 
-cd
+cd $PYTHON_HOME
 
 if [[ -e $PYTHON_HOME/.bootstrapped ]]; then
   exit 0
