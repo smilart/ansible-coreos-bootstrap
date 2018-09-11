@@ -19,19 +19,19 @@
   when: need_bootstrap is failed
 
 - name: Copy get-pip.py
-  copy: src=get-pip.py dest=~/get-pip.py
+  copy: src=get-pip.py dest=/opt/python/get-pip.py
   when: need_pip is failed
 
 - name: Install pip
-  shell: "{{ansible_python_interpreter}} ~/get-pip.py"
+  shell: "{{ansible_python_interpreter}} /opt/python/get-pip.py"
   when: need_pip is failed
 
 - name: Remove get-pip.py
-  file: path=~/get-pip.py state=absent
+  file: path=/opt/python/get-pip.py state=absent
   when: need_pip is failed
 
 - name: Install pip launcher
-  copy: src=runner dest=~/bin/pip mode=0755
+  copy: src=runner dest=/opt/python/bin/pip mode=0755
   when: need_pip is failed
 
 - name: Check if we need to install docker-py
