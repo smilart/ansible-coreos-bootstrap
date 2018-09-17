@@ -30,7 +30,7 @@ mkdir -p $PYTHON_HOME/bin
 
 cat > $PYTHON_HOME/bin/python <<EOF
 #!/bin/bash
-LD_LIBRARY_PATH=$HOME/pypy/lib:$LD_LIBRARY_PATH exec $HOME/pypy/bin/pypy "\$@"
+LD_LIBRARY_PATH=$PYTHON_HOME/pypy/lib:$LD_LIBRARY_PATH exec $PYTHON_HOME/pypy/bin/pypy "\$@"
 EOF
 
 chmod +x $PYTHON_HOME/bin/python
