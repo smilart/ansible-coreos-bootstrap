@@ -1,5 +1,12 @@
+- name: Check /opt/python directory
+  raw: test -d /opt/python
+  register: python_dir_exist
+  ignore_errors: True
+  changed_when: false 
+
 - name: Create /opt/python directory
   raw: mkdir -p /opt/python 
+  when: python_dir_exist is failed
 
 - name: Check if bootstrap is needed
   raw: stat /opt/python/.bootstrapped
