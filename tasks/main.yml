@@ -51,3 +51,32 @@
   shell: "{{ansible_python_interpreter}} -m pip install docker"
   when: need_docker_module is failed
 
+- name: Check if we need to install boto
+  shell: "{{ansible_python_interpreter}} -c 'import boto'"
+  register: need_boto_module
+  ignore_errors: True
+  changed_when: false
+
+- name: Install boto
+  shell: "{{ansible_python_interpreter}} -m pip install boto"
+  when: need_boto_module is failed
+
+- name: Check if we need to install boto3
+  shell: "{{ansible_python_interpreter}} -c 'import boto3'"
+  register: need_boto3_module
+  ignore_errors: True
+  changed_when: false
+
+- name: Install boto3
+  shell: "{{ansible_python_interpreter}} -m pip install boto3"
+  when: need_boto3_module is failed
+
+- name: Check if we need to install botocore
+  shell: "{{ansible_python_interpreter}} -c 'import botocore'"
+  register: need_botocore_module
+  ignore_errors: True
+  changed_when: false
+
+- name: Install botocore
+  shell: "{{ansible_python_interpreter}} -m pip install botocore"
+  when: need_botocore_module is failed
